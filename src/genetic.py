@@ -22,3 +22,6 @@ class Genetic:
 
     def make_crossover(self):
         pass
+
+    def print_population(self):
+        print(self.population)
