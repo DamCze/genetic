@@ -1,3 +1,10 @@
 import numpy as np
+from mutations.regular_mutation import RegularMutation
 
-print(np.random.rand())
+regular = RegularMutation(1)
+a, b = regular.mutate(1, 4)
+print("!!!!!!!!!!!!!!!!!!!")
+print(a)
+print(b)
+
+
