@@ -1,14 +1,27 @@
-from crossovers import *
 from genetic import Genetic
+from crossovers import *
 from mutations import *
 from selections import *
 
 f = lambda x, y: ((1.5 - x + x * y) ** 2 + (2.25 - x + x * y ** 2) ** 2 + (2.625 - x + x * y ** 3) ** 2)
 
-regular_mutation = RegularMutation(1)
-arithmetic_crossover = ArithmeticCrossover(1)
+iterations = 100
 
-genetic = Genetic(f, ITournamentSelection, regular_mutation, arithmetic_crossover, pop_size=100)
-winners = genetic.make_selection()
-print(winners)
-print(len(winners))
+# region Initialize mutations
+regular_mutation = RegularMutation(1)
+index_change_mutation = IndexChangeMutation(1)
+# endregion
+
+# region Initialize crossovers
+arithmetic_crossover = ArithmeticCrossover(1)
+heuristic_crossover = HeuristicCrossover(1, attempts=5)
+# endregion
+
+
+genetic = Genetic(f, ITournamentSelection, index_change_mutation, arithmetic_crossover, pop_size=100)
+
+for _ in range(iterations):
+    winners = genetic.make_selection()
+    genetic.make_crossover(winners)
+
+print(genetic.population[0])
