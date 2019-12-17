@@ -6,7 +6,7 @@ from selections.selection_helper import correct_population
 class BestSelection:
     @staticmethod
     def select(results, percent_best, pop_size, population):
-        winners = correct_population(population)
+        winners = []
 
         ix = 0
         number_of_best = round(percent_best * len(results))
@@ -17,9 +17,10 @@ class BestSelection:
 
             winners.append(point)
 
-            while len(winners) < pop_size:
-                rand_x = np.random.randint(0, pop_size)
-                point = population[rand_x]
+        while len(winners) < pop_size:
+            rand_x = np.random.randint(0, pop_size)
+            point = population[rand_x]
 
-                winners.append(point)
-            return winners
+            winners.append(point)
+
+        return correct_population(winners, population)

@@ -6,7 +6,7 @@ from selections.selection_helper import correct_population
 class RouletteWheelSelection:
     @staticmethod
     def select(results, pop_size, population):
-        winners = correct_population(population)
+        winners = []
         new_results = [1 / i if i != 0 else 1 / i + 1 for i in results]
         sum_of_results = sum(new_results)
         probability_list = RouletteWheelSelection._probability_of_choice(sum_of_results, new_results)
@@ -14,7 +14,7 @@ class RouletteWheelSelection:
         while len(winners) < pop_size:
             point = RouletteWheelSelection._spin_roulette(cumulative_distribution, population)
             winners.append(point)
-        return winners
+        return correct_population(winners, population)
 
     @staticmethod
     def _probability_of_choice(_sum_of_results, _results):

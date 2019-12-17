@@ -8,6 +8,7 @@ f = lambda x, y: ((1.5 - x + x * y) ** 2 + (2.25 - x + x * y ** 2) ** 2 + (2.625
 regular_mutation = RegularMutation(1)
 arithmetic_crossover = ArithmeticCrossover(1)
 
-genetic = Genetic(f, IBestSelection, regular_mutation, arithmetic_crossover)
+genetic = Genetic(f, ITournamentSelection, regular_mutation, arithmetic_crossover, pop_size=100)
 winners = genetic.make_selection()
 print(winners)
+print(len(winners))
