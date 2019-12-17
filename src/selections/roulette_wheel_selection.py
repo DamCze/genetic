@@ -1,18 +1,19 @@
 import numpy as np
 
+from selections.selection_helper import correct_population
+
 
 class RouletteWheelSelection:
     @staticmethod
     def select(results, pop_size, population):
-        winners = []
+        winners = correct_population(population)
         new_results = [1 / i if i != 0 else 1 / i + 1 for i in results]
         sum_of_results = sum(new_results)
         probability_list = RouletteWheelSelection._probability_of_choice(sum_of_results, new_results)
         cumulative_distribution = RouletteWheelSelection._set_up_cumulative_distribution(probability_list)
         while len(winners) < pop_size:
-            point_1 = RouletteWheelSelection._spin_roulette(cumulative_distribution, population)
-            point_2 = RouletteWheelSelection._spin_roulette(cumulative_distribution, population)
-            winners.append((point_1, point_2))
+            point = RouletteWheelSelection._spin_roulette(cumulative_distribution, population)
+            winners.append(point)
         return winners
 
     @staticmethod

@@ -5,7 +5,8 @@ from strategies import *
 
 
 class Genetic:
-    def __init__(self, f, selection_type, pop_size=100, n_variables=2, elite_strategy_size=1, percent_best=0.1,
+    def __init__(self, f, selection_type, mutation_provider, crossover_provider, pop_size=100, n_variables=2,
+                 strategy_size=1, percent_best=0.1,
                  group_size=3):
         self.f = f
         self.pop_size = pop_size
@@ -15,7 +16,9 @@ class Genetic:
         self.maximum = 4.5
         self.percent_best = percent_best
         self.population = self.initialize_population()
-        self.strategy_provider = EliteStrategy(elite_strategy_size)
+        self.strategy_provider = EliteStrategy(strategy_size)
+        self.mutation_provider = mutation_provider
+        self.crossover_provider = crossover_provider
         self.group_size = group_size
         self.offsprings = []
 
@@ -31,8 +34,11 @@ class Genetic:
         winners = self.set_up_selection(results)
         return winners
 
-    def make_crossover(self):
-        pass
+    def make_crossover(self, _winners):
+        for i, j in _winners:
+            x1, x2, y1, y2 = self.crossover_provider.cross(i[0], j[0], i[1], j[1])
+            new_x1, new_x2 = self.mutation_provider.mutate(x1, x2)
+            new_y1, new_y2 = self.mutation_provider.mutate(y1, y2)
 
     def set_up_selection(self, results):
         if self.selection_type == ITournamentSelection:
