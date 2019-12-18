@@ -51,6 +51,3 @@ class Genetic:
             return BestSelection.select(results, self.percent_best, self.pop_size, self.population)
         elif self.selection_type == IRouletteWheelSelection:
             return RouletteWheelSelection.select(results, self.pop_size, self.population)
-
-    def print_population(self):
-        print(len(self.population))

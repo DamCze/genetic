@@ -17,11 +17,8 @@ arithmetic_crossover = ArithmeticCrossover(1)
 heuristic_crossover = HeuristicCrossover(1, attempts=5)
 # endregion
 
-
-genetic = Genetic(f, ITournamentSelection, index_change_mutation, arithmetic_crossover, pop_size=100)
+genetic = Genetic(f, ITournamentSelection, index_change_mutation, heuristic_crossover)
 
 for _ in range(iterations):
     winners = genetic.make_selection()
     genetic.make_crossover(winners)
-
-print(genetic.population[0])

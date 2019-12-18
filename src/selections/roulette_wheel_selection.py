@@ -1,5 +1,4 @@
 import numpy as np
-
 from selections.selection_helper import correct_population
 
 
