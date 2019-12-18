@@ -14,7 +14,7 @@ index_change_mutation = IndexChangeMutation(1)
 
 # region Initialize crossovers
 arithmetic_crossover = ArithmeticCrossover(1)
-heuristic_crossover = HeuristicCrossover(1, attempts=5)
+heuristic_crossover = HeuristicCrossover(1, 5, arithmetic_crossover)
 # endregion
 
 genetic = Genetic(f, ITournamentSelection, index_change_mutation, heuristic_crossover)

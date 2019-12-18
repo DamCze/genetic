@@ -52,7 +52,8 @@ class Action:
             crossover = ArithmeticCrossover(self.crossover_probability)
             return crossover
         elif self.crossover == 2:
-            crossover = HeuristicCrossover(self.crossover_probability, 5)
+            crossover = HeuristicCrossover(self.crossover_probability, 5,
+                                           ArithmeticCrossover(self.crossover_probability))
             return crossover
 
     def get_mutation(self):
