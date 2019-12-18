@@ -59,6 +59,7 @@ mutationProbability = Spinbox(window, from_=0, to=70, width=5, textvariable=defa
 mutationProbabilityLabel = Label(window, text="Probability mutation %", font="bold")
 eliteStrategyAmount = Spinbox(window, from_=0, to=70, width=5, textvariable=defaultEliteStrategyAmount)
 eliteStrategyAmountLabel = Label(window, text="Elite strategy amount", font="bold")
+timeLabel = Label(window, text="Time in seconds ")
 probabilityLabel = Label(window, text="Additional configuration", font='Helvetica 12 bold')
 timeLabelValue = Label(window, textvariable=durationValue)
 bestXLabel = Label(window, text="x =")
