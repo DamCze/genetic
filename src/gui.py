@@ -69,12 +69,12 @@ bestY = Label(window, textvariable=bestYValue)
 
 
 def clicked():
-    print(selection.get())
-    print(population.get())
-    print(epoch.get())
-    print(int(percentBestSpin.get()) / 100)
-    print(tournamentSizeSpin.get())
-    print(eliteStrategyBool.get())
+    # print(selection.get())
+    # print(population.get())
+    # print(epoch.get())
+    # print(int(percentBestSpin.get()) / 100)
+    # print(tournamentSizeSpin.get())
+    # print(eliteStrategyBool.get())
     action = Action(int(population.get()), int(epoch.get()), int(selection.get()), int(crossover.get()),
                     int(percentBestSpin.get()) / 100,
                     int(tournamentSizeSpin.get()), int(mutation.get()), int(mutationProbability.get()) / 100,

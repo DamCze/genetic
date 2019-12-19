@@ -11,7 +11,7 @@ class HeuristicCrossover:
     def cross(self, x_1, x_2, y_1, y_2):
         if check_if_mutate(self.crossover_probability):
             for _ in range(self.attempts):
-                if x_2 > x_1 and y_2 > y_1:
+                if x_2 < x_1 and y_2 < y_1:
                     k_1 = np.random.rand()
                     x_1_new = k_1 * (x_2 - x_1) + x_2
                     y_1_new = k_1 * (y_2 - y_1) + y_2

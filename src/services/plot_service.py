@@ -12,7 +12,7 @@ def set_up_primary_plot(x, fx, fxstd, fxaverage, label):
     plt2.clf()
     plt2.cla()
     plot_basis = tk.Tk()
-    fig = plt2.figure(1, dpi=100)
+    fig = plt2.figure(1, dpi=80, figsize=(12, 12))
     plt2.subplot(221)
     plt2.plot(x, fx)
     plt.title('Wartość funkcji')

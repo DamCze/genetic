@@ -38,8 +38,8 @@ class Genetic:
         for i in range(0, len(_winners) - 1, 2):
             x1, x2, y1, y2 = self.crossover_provider.cross(_winners[i][0], _winners[i + 1][0], _winners[i][1],
                                                            _winners[i + 1][1])
-            new_x1, new_x2 = self.mutation_provider.mutate(x1, x2)
-            new_y1, new_y2 = self.mutation_provider.mutate(y1, y2)
+            new_x1, new_y1 = self.mutation_provider.mutate(x1, y1)
+            new_x2, new_y2 = self.mutation_provider.mutate(x2, y2)
             self.offsprings.append(np.array([new_x1, new_y1]))
             self.offsprings.append(np.array([new_x2, new_y2]))
         self.population = self.offsprings

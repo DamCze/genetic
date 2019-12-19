@@ -1,6 +1,7 @@
 import time
-
+import tkinter as tk
 import matplotlib
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from crossovers import *
 from genetic import *
@@ -8,6 +9,7 @@ from mutations import *
 from services import set_up_primary_plot
 
 matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
 
 
 class Action:
@@ -66,11 +68,11 @@ class Action:
 
     def get_selection(self):
         if self.selection == 1:
-            return IRouletteWheelSelection
-        elif self.selection == 2:
             return ITournamentSelection
-        elif self.selection == 3:
+        elif self.selection == 2:
             return IBestSelection
+        elif self.selection == 3:
+            return IRouletteWheelSelection
 
     def go(self):
         file = self.create_file(self.get_selection())
@@ -78,7 +80,8 @@ class Action:
         start = time.time()
 
         crossover_type = self.get_crossover_type()
-        genetic = Genetic(self.f, self.get_selection(), self.get_mutation(), self.get_crossover(), self.population,
+        genetic = Genetic(f=self.f, selection_type=self.get_selection(), mutation_provider=self.get_mutation(),
+                          crossover_provider=self.get_crossover(), pop_size=self.population,
                           group_size=self.tournament_size,
                           percent_best=self.percent_best, strategy_size=self.strategy_size)
 
@@ -99,8 +102,6 @@ class Action:
         self.set_best_y(self.f(genetic.population[0][0], genetic.population[0][1]))
         self.add_info_to_file(crossover_type, duration, file)
         file.close()
-        print(duration)
-        print(genetic.population[0])
         x = np.arange(0, self.epoch, 1)
         set_up_primary_plot(x, self.fx, self.fstd, self.fxAverage, self.get_selection())
         self.fx.clear()
